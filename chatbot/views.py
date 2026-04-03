@@ -5,12 +5,13 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
-import openai
+import google.generativeai as genai
 
 from .models import ChatConversation, ChatMessage
 
-# Configure OpenAI API
-openai.api_key = os.getenv('OPENAI_API_KEY', '')
+# Configure Google Gemini API
+genai.configure(api_key=os.getenv('GOOGLE_API_KEY', ''))
+model = genai.GenerativeModel('gemini-pro')
 
 
 @login_required
@@ -80,18 +81,22 @@ def send_message(request):
                 'content': msg.content
             })
 
-        # Call OpenAI API
-        if not openai.api_key:
-            return JsonResponse({'error': 'OpenAI API key not configured'}, status=500)
+        # Call Google Gemini API
+        if not genai.api_key:
+            return JsonResponse({'error': 'Google API key not configured'}, status=500)
 
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=messages_history,
-            temperature=0.7,
-            max_tokens=1000
-        )
+        # Prepare conversation history for Gemini
+        history = []
+        for msg in conversation.messages.all().order_by('created_at'):
+            role = "user" if msg.role == "user" else "model"
+            history.append({"role": role, "parts": [msg.content]})
 
-        assistant_message = response.choices[0].message['content']
+        # Start chat with history
+        chat = model.start_chat(history=history[:-1])  # Exclude the current message
+
+        # Send message
+        response = chat.send_message(user_message)
+        assistant_message = response.text
 
         # Save assistant response
         ai_msg = ChatMessage.objects.create(

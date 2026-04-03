@@ -2,10 +2,10 @@
 
 [![Django](https://img.shields.io/badge/Django-5.2.12-green.svg)](https://djangoproject.com/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://python.org/)
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--3.5--Turbo-orange.svg)](https://openai.com/)
+[![Google Gemini](https://img.shields.io/badge/Google-Gemini-orange.svg)](https://ai.google.dev/)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
-> A modern, feature-rich Django application combining task management with an advanced AI chatbot powered by OpenAI's GPT-3.5 Turbo.
+> A modern, feature-rich Django application combining task management with an advanced AI chatbot powered by **Google Gemini** - **100% FREE!**
 
 ## ✨ Features
 
@@ -36,7 +36,7 @@
 ### Prerequisites
 - Python 3.11+
 - Git
-- OpenAI API Key ([Get one here](https://platform.openai.com/api-keys))
+- **Google Gemini API Key** ([Get one here](https://aistudio.google.com/app/apikey)) - **100% FREE!**
 
 ### Installation
 
@@ -62,13 +62,14 @@ pip install -r requirement.txt
 
 4. **Set up environment variables:**
 ```bash
-# Create .env file or set environment variable
-# Option 1: Create .env file
-echo "OPENAI_API_KEY=your-api-key-here" > .env
+# Create .env file
+echo "GOOGLE_API_KEY=your-gemini-api-key-here" > .env
 
-# Option 2: Set environment variable
-export OPENAI_API_KEY="your-api-key-here"
+# Or set environment variable
+export GOOGLE_API_KEY="your-gemini-api-key-here"
 ```
+
+**Get FREE Google Gemini API Key:** https://aistudio.google.com/app/apikey
 
 5. **Run database migrations:**
 ```bash
@@ -96,9 +97,11 @@ python manage.py runserver
 ### 🤖 Using FREDDY ChatBot
 1. **Login/Register** with your account
 2. **Navigate to** `/chat/` URL
-3. **Start chatting!** FREDDY will respond intelligently
+3. **Start chatting!** FREDDY will respond intelligently using **Google Gemini**
 4. **Create new conversations** using the ➕ button
 5. **Switch between conversations** from the sidebar
+
+**💰 100% FREE** - No API costs with Google Gemini!
 
 ### 📋 Task Management
 1. **Login** to access your dashboard
@@ -107,13 +110,12 @@ python manage.py runserver
 4. **Mark tasks complete** when done
 5. **Delete tasks** you no longer need
 
-## 🛠️ Configuration
-
-### OpenAI Settings
+### Google Gemini Settings
 Edit `chatbot/config.py` or environment variables:
 
 ```python
-CHAT_MODEL = "gpt-3.5-turbo"  # or "gpt-4"
+GOOGLE_API_KEY = "your-api-key-here"  # Get from https://aistudio.google.com/app/apikey
+MODEL = "gemini-pro"                   # Free and powerful!
 TEMPERATURE = 0.7             # Creativity (0.0-2.0)
 MAX_TOKENS = 1000             # Response length
 ```
@@ -180,7 +182,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **OpenAI** for GPT-3.5 Turbo API
-- **Django** framework
+- **Google AI** for Gemini API (100% FREE!)
 - **Bootstrap** for UI components
 - **GitHub** for hosting
 
@@ -203,4 +205,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ by Shivansh Gaur**
 
-**FREDDY is ready to chat! 🤖✨**
+**FREDDY is 100% FREE and ready to chat! 🤖✨**
