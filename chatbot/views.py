@@ -10,7 +10,7 @@ import openai
 from .models import ChatConversation, ChatMessage
 
 # Configure OpenAI API
-openai.api_key = os.getenv('OPENAI_API_KEY', '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')
+openai.api_key = os.getenv('OPENAI_API_KEY', '')
 
 
 @login_required
